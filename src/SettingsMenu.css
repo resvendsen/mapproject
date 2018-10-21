@@ -1,0 +1,41 @@
+/* fixup the <select> so it looks like the other buttons */
+.themes-dropdown {
+	background-color: #222;
+	color: #ddd;
+	border-style: none;
+	height: 29px;
+	line-height: 20px;
+}
+
+.accessibility-button, .themes-dropdown, .about-button {
+	border: 1px solid transparent;
+}
+
+.accessibility-button:focus, .about-button:focus {
+	border: 1px solid cyan;
+	border-radius: 5px;
+}
+
+/* peculiar behavior of <select> on focus and hover requires this, else border and outline show at the same time */
+.themes-dropdown:focus:not(:hover) {
+	border-style: none;
+	outline: none;
+	box-shadow: 0 0 0 1px cyan;
+}
+
+.accessibility-button:hover, .themes-dropdown:hover, .about-button:hover {
+	outline: none;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+}
+
+.settings-menu {
+  position: relative;
+  bottom: 2vh;
+}
+
+@media only screen and (min-width: 1640px) {
+	.settings-menu {
+		bottom: 4vh;
+	}
+}

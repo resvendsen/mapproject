@@ -1,0 +1,8 @@
+.locationinput {
+	border: 1px solid transparent;
+}
+
+.searchbutton:hover, .searchinput:hover {
+	border: 1px solid #999999;
+	border-radius: 2px;
+}

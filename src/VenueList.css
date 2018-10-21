@@ -1,0 +1,27 @@
+.list-columns {
+	list-style: none;
+	-webkit-column-count: 2;
+	column-count: 2;
+	padding: 0;
+	margin: 0;
+	text-align: left;
+}
+
+.container {
+  display: flex;
+}
+
+.box {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.box:first-child > span { margin-right: auto; }
+
+.box:last-child  > span { margin-left: auto;  }
+
+.venue-info {
+	line-height: 30px;
+	vertical-align: middle;
+}
