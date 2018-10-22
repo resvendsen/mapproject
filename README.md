@@ -47,7 +47,7 @@ Devices from smartphones through wide screen desktops are supported.  Some featu
 
     Begin execution by entering localhost:3000 into your browser url field and hitting Enter..
 
-    ## Quick Searching
+    # ## Quick Searching
 
     In the first entry field, enter one of:
         *business name, point of interest, hospital name, etc., or
