@@ -23,12 +23,12 @@
 The **Find Venues** app queries the Foursquare database for any businesses, points of interest, etc. near a user entered location.  Venues may be sought by name, keyword, or category.  Locations near which users are seeking the venue, may be entered as a street address, city, or the user's "Current Location".  Additional filtering available is "search radius" and "number of venues desired", the use of which will speed up searches.
 
 
-#Requirements and Limitations
+# Requirements and Limitations
 
 Devices from smartphones through wide screen desktops are supported.  Some features are limited on mobile devices.
 
 
-#Installation
+# Installation
 
 * Load the application files into the directory of your choice.
 * npm is required, so install it if you don't already have it.  See npmjs.com.
@@ -41,13 +41,13 @@ Devices from smartphones through wide screen desktops are supported.  Some featu
   - npm install --save semantic-ui-react
 
 
-#Use
+# Use
 
-    #Begin
+    ## Begin
 
     Begin execution by entering localhost:3000 into your browser url field and hitting Enter..
 
-    #Quick Searching
+    ## Quick Searching
 
     In the first entry field, enter one of:
         *business name, point of interest, hospital name, etc., or
