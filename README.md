@@ -8,13 +8,13 @@
 * [Requirements and Limitations](#requirements-and-limitations)
 * [Installation](#installation)
 * [Use](#use)
-  - [Begin](#begin)
-  - [Quick Searching](#quick-searching)
-  - [Limiting Search Results](#limiting-search-results)
-  - [Results Modes](#results-modes)
-  - [Navigation and Selection Keys](#navigation-and-selection-keys)
+  - Begin
+  - Quick Searching
+  - Limiting Search Results
+  - Results Modes
+  - Navigation and Selection Keys
 * [Accessibility](#accessibility)
-
+* [Resources](#resources)
 
 
 
@@ -43,11 +43,11 @@ Devices from smartphones through wide screen desktops are supported.  Some featu
 
 # Use
 
-    **Begin**
+    ### Begin
 
     Begin execution by entering localhost:3000 into your browser url field and hitting Enter..
 
-    **Quick Searching**
+    ### Quick Searching
 
     In the first entry field, enter one of:
         *business name, point of interest, hospital name, etc., or
