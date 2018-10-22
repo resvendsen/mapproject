@@ -18,9 +18,9 @@
 
 
 
-#Purpose
+# Purpose
 
-The **Find Venues** app queries a large database for any businesses, points of interest, etc. near a user entered location.  Venues may be sought by name, keyword, and category.  Locations near which users are seeking the venue, may be entered as a street address, city, or the user's "Current Location".  Additional filtering available is "search radius" and "number of venues desired", the use of which will speed up searches.
+The **Find Venues** app queries the Foursquare database for any businesses, points of interest, etc. near a user entered location.  Venues may be sought by name, keyword, or category.  Locations near which users are seeking the venue, may be entered as a street address, city, or the user's "Current Location".  Additional filtering available is "search radius" and "number of venues desired", the use of which will speed up searches.
 
 
 #Requirements and Limitations
@@ -98,4 +98,11 @@ In addition to the packages mentioned in the [Installation](#installation) secti
 React-google-maps was used to create a custom component called Infobox.  Infobox replaces google-maps' InfoWindow.
 
 The Facebook create-react-app package was used to seed the initial project skeleton.
+
+The alternate map theme, called "Fancy" in the app, is DemoFancyMapStyles.json from github.com/tomchentw/react-google-maps/src/components/addons.
+
+Foursquare.com is used as the source database for finding venues.  It also provides detailed information for each venue.
+
+Google Maps is the source for rendering maps and markers.  Google Maps Geocoder provide the latitude and longitude for the actual location of the device requesting the search information.
+
 # mapproject
