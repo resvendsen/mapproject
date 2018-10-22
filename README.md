@@ -8,11 +8,11 @@
 * [Requirements and Limitations](#requirements-and-limitations)
 * [Installation](#installation)
 * [Use](#use)
-  - Begin
-  - Quick Searching
-  - Limiting Search Results
-  - Results Modes
-  - Navigation and Selection Keys
+  - [Begin](#begin)
+  - [Quick Searching](#quick-searching)
+  - [Limiting Search Results](#limiting-search-results)
+  - [Results Modes](#results-modes)
+  - [Navigation and Selection Keys](#navigation-and-selection-keys)
 * [Accessibility](#accessibility)
 * [Resources](#resources)
 
@@ -44,22 +44,19 @@ Devices from smartphones through wide screen desktops are supported.  Some featu
 # Use
 
 #### Begin
-
     Begin execution by entering localhost:3000 into your browser url field and hitting Enter..
 
-    ### Quick Searching
-
+#### Quick Searching
     In the first entry field, enter one of:
-        *business name, point of interest, hospital name, etc., or
-        *keywords, e.g., grill, pizza, etc., or
-        *category, e.g., category:gas, category:bar, etc.
+        * business name, point of interest, hospital name, etc., or
+        * keywords, e.g., grill, pizza, etc., or
+        * category, e.g., category:gas, category:bar, etc.
 
     In the second entry field (location), enter a street address or a city, state abbreviation.  You may also click on ![location pointer](./public/location-pointer.png) which will load "Current Location" into the field.
 
     Click on the blue search button.
 
-    **Limiting Search Results**
-
+#### Limiting Search Results
     **NOTE**:  These features are not implemented on mobile devices.
 
     The number of search results can be limited by shrinking the serach radius and/or by expressing the maximum number that may be returnes.
@@ -68,14 +65,12 @@ Devices from smartphones through wide screen desktops are supported.  Some featu
 
     Maximum count defaults to 30.  You may enter up to 50 or down to 1.
 
-    **Results Modes**
-
+#### Results Modes
     The returned information may either be displayed on a map or as a list.  Click the **Show Map** checkbox to display in map mode.  A check mark indicates that the map will display.  Unclick the **Show Map** check box to display the results in a list.  In this case the checkbox will be blank or unchecked.
 
     You may check or uncheck this box at any time, either before or after a search.  If the results are already displayed when you click it, it will display the same results in the other mode.
 
-    **Navigation and Selection Keys**
-
+#### Navigation and Selection Keys
     Tabbing may be used in the header settings section and the search section to move from field to field.  It is available whether or not accessibility is turned on.  Tabbing is also available to navigate through the venue list section.
 
     The Space Bar may be used to trigger the "current location" point icon as well as to set and unset the "show map" checkbox.
@@ -90,6 +85,7 @@ Devices from smartphones through wide screen desktops are supported.  Some featu
 Google Maps provides no accessibility for location markers.  As an alternative the Venue Finder Web App provides a listing of venues which are accessible via tab and Up and Down Arrow keys.
 
 Button presses are accessible by using the Enter key.  The Show Map checkbox can be controlled through the space bar.
+
 
 # Resources
 
