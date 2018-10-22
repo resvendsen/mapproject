@@ -43,7 +43,7 @@ Devices from smartphones through wide screen desktops are supported.  Some featu
 
 # Use
 
-    ### Begin
+#### Begin
 
     Begin execution by entering localhost:3000 into your browser url field and hitting Enter..
 
