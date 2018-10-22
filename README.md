@@ -43,11 +43,11 @@ Devices from smartphones through wide screen desktops are supported.  Some featu
 
 # Use
 
-    # Begin
+    **Begin**
 
     Begin execution by entering localhost:3000 into your browser url field and hitting Enter..
 
-    # Quick Searching
+    **Quick Searching**
 
     In the first entry field, enter one of:
         *business name, point of interest, hospital name, etc., or
@@ -58,7 +58,7 @@ Devices from smartphones through wide screen desktops are supported.  Some featu
 
     Click on the blue search button.
 
-    # Limiting Search Results
+    **Limiting Search Results**
 
     **NOTE**:  These features are not implemented on mobile devices.
 
@@ -68,13 +68,13 @@ Devices from smartphones through wide screen desktops are supported.  Some featu
 
     Maximum count defaults to 30.  You may enter up to 50 or down to 1.
 
-    # Results Modes
+    **Results Modes**
 
     The returned information may either be displayed on a map or as a list.  Click the **Show Map** checkbox to display in map mode.  A check mark indicates that the map will display.  Unclick the **Show Map** check box to display the results in a list.  In this case the checkbox will be blank or unchecked.
 
     You may check or uncheck this box at any time, either before or after a search.  If the results are already displayed when you click it, it will display the same results in the other mode.
 
-    # Navigation and Selection Keys
+    **Navigation and Selection Keys**
 
     Tabbing may be used in the header settings section and the search section to move from field to field.  It is available whether or not accessibility is turned on.  Tabbing is also available to navigate through the venue list section.
 
