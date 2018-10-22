@@ -1,3 +1,5 @@
+# mapproject
+
 # Find Venues Web App
 
 ## Table of Contents
@@ -96,3 +98,4 @@ In addition to the packages mentioned in the [Installation](#installation) secti
 React-google-maps was used to create a custom component called Infobox.  Infobox replaces google-maps' InfoWindow.
 
 The Facebook create-react-app package was used to seed the initial project skeleton.
+# mapproject
