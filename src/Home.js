@@ -86,9 +86,10 @@ class Home extends Component {
 									console.log(this.state.venues.length + ' ' + this.state.searchReq + ' venues retrieved')
 								})
 						})
-						.catch((e) =>
-								console.log(e))
+						.catch((e) => {
+								console.log(e)
 								alert('*** Error fetching venues.  Please contact programmer. ***')
+						})
   			}
   		)
   }

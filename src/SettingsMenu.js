@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Dropdown, Menu, Button, Icon, Modal, Responsive} from 'semantic-ui-react'
+import {Menu, Button, Icon, Modal, Responsive} from 'semantic-ui-react'
 import PropTypes from 'prop-types'
 import './SettingsMenu.css'
 
@@ -76,11 +76,12 @@ class SettingsMenu extends Component {
 			      </Button>
 			    </Menu.Item>
 			    <Menu.Item>
-			    <select className='themes-dropdown' name='theme' tabIndex='0' onChange={ (e) => handleThemeChange(e) } style={ theme !== 'default' ? greenstyle : plainstyle }>
+			    <select className='themes-dropdown' name='theme' tabIndex='0' onChange={ (e) => handleThemeChange(e) } label="" aria-label="Map Themes" style={ theme !== 'default' ? greenstyle : plainstyle }>
 			    	{/* from stackoverflow.com "How do I make a placeholder for a 'select' box?" William Isted dtd Dec 9 '11' at 8:22  */}
-			    	<option value="" disabled selected hidden>Theme</option>
-			    	<option className='themes-option' value='default'>Default</option>
-			    	<option className='themes-option' value='fancy'>Fancy</option>
+			    	{/* the line below does precisely what I want but generates a warning which is not allowed in Udacity project */}
+						{/*	<option value="" disabled selected hidden>Theme</option> */}
+			    	<option className='themes-option' value='default' aria-label="default theme">Default</option>
+			    	<option className='themes-option' value='fancy' aria-label="fancy theme">Fancy</option>
 			    </select>
 			    </Menu.Item>
 			    <Menu.Item>

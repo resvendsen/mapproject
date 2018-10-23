@@ -68,6 +68,8 @@ class VenueList extends Component {
 				// allow Enter inside the modal for triggering the close button
 				this.handleOpen(i)
 				break
+			default:
+				break
 		}
 	}
 

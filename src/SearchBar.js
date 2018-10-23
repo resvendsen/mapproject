@@ -47,6 +47,7 @@ class SearchBar extends Component {
 											onChange={ this.handleInputChange }
 											value={ this.state.searchReq }
 											name="searchReq"
+											aria-label="Enter venue name, category:type or keyword"
 											placeholder="Search for venue, category..."
 										/>
 									</Form.Field>
@@ -60,14 +61,22 @@ class SearchBar extends Component {
 													onChange={ this.handleInputChange }
 													value={ this.state.searchLoc }
 													name="searchLoc"
+													aria-label="Enter Base Location"
 													placeholder="Location"
 												/>
-												<i className="point link icon" onClick={ this.useCurrentLocation } onKeyPress={ (e) => handleKeyPress(e, this.useCurrentLocation) } tabIndex="0" style={ {color: "rgb(95, 124, 162)"} }></i>
+												<i
+													className="point link icon"
+													onClick={ this.useCurrentLocation }
+													onKeyPress={ (e) => handleKeyPress(e, this.useCurrentLocation) }
+													tabIndex="0"
+													aria-label="Current Location Selector"
+													style={ {color: "rgb(95, 124, 162)"} }>
+												</i>
 											</div>
 										</Form.Field>
 										<Form.Field inline>
 											<div className="searchBarItem">
-												<button className="ui icon primary button mini searchbutton" onClick={ this.handleSubmit } >
+												<button className="ui icon primary button mini searchbutton" aria-label="Search Button" onClick={ this.handleSubmit } >
 													<i className="search icon" />
 												</button>
 											</div>
@@ -93,6 +102,7 @@ class SearchBar extends Component {
 													onChange={ this.handleInputChange }
 													value={ this.state.searchReq }
 													name="searchReq"
+													aria-label="Enter venue name, category:type or keyword"
 													placeholder="Search for venue, category: name, keyword..."
 												/>
 											</Form.Field>
@@ -106,14 +116,22 @@ class SearchBar extends Component {
 															onChange={ this.handleInputChange }
 															value={ this.state.searchLoc }
 															name="searchLoc"
+															aria-label="Enter Base Location"
 															placeholder="Location"
 														/>
-														<i className="point link icon" onClick={ this.useCurrentLocation } onKeyPress={ (e) => handleKeyPress(e, this.useCurrentLocation) } tabIndex="0" style={ {color: "rgb(95, 124, 162)"} }></i>
+														<i
+															className="point link icon"
+															onClick={ this.useCurrentLocation }
+															onKeyPress={ (e) => handleKeyPress(e, this.useCurrentLocation) }
+															tabIndex="0"
+															aria-label="Current Location Selector"
+															style={ {color: "rgb(95, 124, 162)"} }>
+														</i>
 													</div>
 												</Form.Field>
 											</Form.Group>
 											<div className="searchBarItem">
-												<button className="ui icon primary button small searchbutton" onClick={ this.handleSubmit } >
+												<button className="ui icon primary button small searchbutton" onClick={ this.handleSubmit } aria-label="Search Button">
 													<i className="search icon" />
 												</button>
 											</div>
@@ -139,6 +157,7 @@ class SearchBar extends Component {
 													onChange={ this.handleInputChange }
 													value={ this.state.searchReq }
 													name="searchReq"
+													aria-label="Enter venue name, category:type or keyword"
 													placeholder="Search for venue, category, keyword..."
 												/>
 											</Form.Field>
@@ -152,14 +171,22 @@ class SearchBar extends Component {
 															onChange={ this.handleInputChange }
 															value={ this.state.searchLoc }
 															name="searchLoc"
+															aria-label="Enter Base Location"
 															placeholder="Location"
 														/>
-														<i className="point link icon" onClick={ this.useCurrentLocation } onKeyPress={ (e) => handleKeyPress(e, this.useCurrentLocation) } tabIndex="0" style={ {color: "rgb(95, 124, 162)"} }></i>
+														<i
+															className="point link icon"
+															onClick={ this.useCurrentLocation }
+															onKeyPress={ (e) => handleKeyPress(e, this.useCurrentLocation) }
+															tabIndex="0"
+															aria-label="Current Location Selector"
+															style={ {color: "rgb(95, 124, 162)"} }>
+														</i>
 													</div>
 												</Form.Field>
 											</Form.Group>
 											<div className="searchBarItem">
-												<button className="ui icon primary button medium searchbutton" onClick={ this.handleSubmit } >
+												<button className="ui icon primary button medium searchbutton" aria-label="Search Button" onClick={ this.handleSubmit }>
 													<i className="search icon" />
 												</button>
 											</div>

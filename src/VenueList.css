@@ -25,3 +25,25 @@
 	line-height: 30px;
 	vertical-align: middle;
 }
+
+li.container {
+	margin-top: 2px;
+	margin-bottom: 1px;
+}
+
+li.container:focus {
+	border: 1px solid cyan;
+	border-radius: 5px;
+}
+
+li.container:hover {
+	outline: none;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+}
+
+li.container:focus:not(:hover) {
+	border-style: none;
+	outline: none;
+	box-shadow: 0 0 0 1px cyan;
+}

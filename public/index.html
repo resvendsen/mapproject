@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <title>Find Venues Near a Given Location</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
@@ -19,19 +20,18 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-<!--    <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.1/mapbox.js'></script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-    <link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.1/mapbox.css' rel='stylesheet' />  -->
+<!--    <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.1/mapbox.js'></script>  -->
+<!--    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>  -->
+<!--    <link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.1/mapbox.css' rel='stylesheet' />  -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.12/semantic.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Find Venues Near a Given Location</title>
   </head>
   <body>
     <main>
       <noscript>
         You need to enable JavaScript to run this app.
       </noscript>
-      <input type="text" id="home" style="position: fixed; left: -99999px;" tabindex=32000 disabled autofocus />
+      <input type="text" id="home" style="position: fixed; left: -99999px;" tabindex=32000 aria-label="Home" disabled autofocus />
       <div id="root"></div>
       <!--
         This HTML file is a template.

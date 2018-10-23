@@ -1,3 +1,4 @@
+/* global google */
 import React, {Component} from 'react'
 import {Marker} from "react-google-maps"
 import InfoBox from 'react-google-maps/lib/components/addons/InfoBox'
@@ -38,8 +39,10 @@ class MapPlusMarker extends Component {
 	}
 
 	render() {
-		const {accessibility, theme} = this.props
-		const infoBoxText = 'lat: ' + this.props.curPosition.lat + ', lng: ' +
+		const {theme} = this.props
+		const {isOpen} = this.state
+		const infoBoxText = 'Current Location\n' +
+												'lat: ' + this.props.curPosition.lat + ', lng: ' +
 												this.props.curPosition.lng +
 			 									'\n' + this.props.curAddress
 		const closestVenue = this.closestVenue()
@@ -56,8 +59,9 @@ class MapPlusMarker extends Component {
 	 			<Marker className='curposmarker'
 	 							position={ {lat: parseFloat(this.props.curPosition.lat), lng: parseFloat(this.props.curPosition.lng)} }
 	 							onClick={ this.toggleOpen }
+	 							animation={ isOpen && google.maps.Animation.BOUNCE }
 	 			>
-	 				{ this.state.isOpen && <InfoBox
+	 				{ isOpen && <InfoBox
 		 					onCloseClick={ this.toggleOpen }
 		 					options={ {closeBoxURL: '', enableEventPropagation: true, label: 'H'} }
 		 					>

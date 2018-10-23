@@ -1,3 +1,4 @@
+/* global google */
 import React, {Component} from 'react'
 import {Marker} from 'react-google-maps'
 import InfoBox from 'react-google-maps/lib/components/addons/InfoBox'
@@ -41,6 +42,7 @@ class VenueMarker extends Component {
 	}
 
 	render() {
+		const {isOpen} = this.state
 		const {venue, className} = this.props
 		const formattedAddress = (venue.location.formattedAddress.length === 1 ? venue.location.formattedAddress[0] :
 															(venue.location.formattedAddress.length === 2 ? venue.location.formattedAddress[0] + ', ' + venue.location.formattedAddress[1] :
@@ -55,6 +57,7 @@ class VenueMarker extends Component {
 				<Marker className={ className }
 								position={ venue.location }
 								onClick={ this.toggleOpen }
+								animation={ isOpen && google.maps.Animation.BOUNCE }
 								icon={ this.state.activeMarker ?
 											{url: this.state.activeMarkerColor} :
 											(this.props.closestVenue.id === venue.id ?
