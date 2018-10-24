@@ -107,7 +107,7 @@ Google Maps is the source for rendering maps and markers.  Google Maps Geocoder 
 
 # Contributing
 
-Contributing is not wanted at this time.
+Contributions are not currently accepted.
 
 
 # Future
