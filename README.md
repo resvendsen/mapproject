@@ -15,7 +15,8 @@
   - [Navigation and Selection Keys](#navigation-and-selection-keys)
 * [Accessibility](#accessibility)
 * [Resources](#resources)
-
+* [Contributing](#contributing)
+* [Future](#future)
 
 
 # Purpose
@@ -102,5 +103,21 @@ The alternate map theme, called "Fancy" in the app, is DemoFancyMapStyles.json f
 Foursquare.com is used as the source database for finding venues.  It also provides detailed information for each venue.
 
 Google Maps is the source for rendering maps and markers.  Google Maps Geocoder provide the latitude and longitude for the actual location of the device requesting the search information.
+
+
+# Contributing
+
+Contributing is not wanted at this time.
+
+
+# Future
+
+- [] Implement ToDo's in the code.
+- [] Add a "clear" button to clear the input fields on the screen.
+- [] Re-insert 'Themes" label which works but was removed because it
+     genereates a warning.
+- [] Implement Traveling Salesman heuristic which produces a route list and mappped display with multiple warehouses and vehicles available for delivery.
+- [] Extend the above by providing Google Maps photos of the addresses on the delivery list.
+
 
 # mapproject
