@@ -16,7 +16,9 @@ class Home extends Component {
 		showMap: PropTypes.bool.isRequired,
 		toggleShowMap: PropTypes.func.isRequired,
 		accessibility: PropTypes.bool.isRequired,
-		theme: PropTypes.string.isRequired
+		toggleAccessibility: PropTypes.func.isRequired,
+		theme: PropTypes.string.isRequired,
+		setTheme: PropTypes.func.isRequired
 	}
 
 	state = {
@@ -135,14 +137,14 @@ class Home extends Component {
 
 	render() {
 		const {curPosition, curAddress, showCurMarker, venues} = this.state
-		const {accessibility, theme} = this.props
+		const {accessibility, toggleAccessibility, theme, setTheme} = this.props
 		return(
 			<div>
 				<div style={{height: "17vh"}}>
 					<SearchBar
 						onSearch={ this.handleSearch }
 					/>
-					<NavBar { ...this.props } showMap={ this.props.showMap } toggleShowMap={ this.props.toggleShowMap }>
+					<NavBar { ...this.props } showMap={ this.props.showMap } toggleShowMap={ this.props.toggleShowMap } accessibility={ accessibility } toggleAccessibility={ toggleAccessibility } theme={ theme } setTheme={ setTheme }>
 	        </NavBar>
 	      </div>
 	      { this.props.showMap ?

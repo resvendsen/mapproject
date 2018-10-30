@@ -76,13 +76,13 @@ class SettingsMenu extends Component {
 			      </Button>
 			    </Menu.Item>
 			    <Menu.Item>
-			    <select className='themes-dropdown' name='theme' tabIndex='0' onChange={ (e) => handleThemeChange(e) } label="" aria-label="Map Themes" style={ theme !== 'default' ? greenstyle : plainstyle }>
-			    	{/* from stackoverflow.com "How do I make a placeholder for a 'select' box?" William Isted dtd Dec 9 '11' at 8:22  */}
-			    	{/* the line below does precisely what I want but generates a warning which is not allowed in Udacity project */}
-						{/*	<option value="" disabled selected hidden>Theme</option> */}
-			    	<option className='themes-option' value='default' aria-label="default theme">Default</option>
-			    	<option className='themes-option' value='fancy' aria-label="fancy theme">Fancy</option>
-			    </select>
+				    <select className='themes-dropdown' name='theme' tabIndex='0' onChange={ (e) => handleThemeChange(e) } label="" aria-label="Map Themes" style={ theme !== 'default' ? greenstyle : plainstyle }>
+				    	{/* from stackoverflow.com "How do I make a placeholder for a 'select' box?" William Isted dtd Dec 9 '11' at 8:22  */}
+				    	{/* the line below does precisely what I want but generates a warning which is not allowed in Udacity project */}
+							{/*	<option value="" disabled selected hidden>Theme</option> */}
+				    	<option className='themes-option' value='default' aria-label="default theme">Default</option>
+				    	<option className='themes-option' value='fancy' aria-label="fancy theme">Fancy</option>
+				    </select>
 			    </Menu.Item>
 			    <Menu.Item>
 		      	<Modal

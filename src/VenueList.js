@@ -81,7 +81,7 @@ class VenueList extends Component {
 //		const sortedVenuesByDistance = this.props.venues.sort((v1, v2) => v1.location.distance - v2.location.distance)
 		const sortedVenues = this.props.venues.sort((v1, v2) => ( v1.name < v2.name ? -1 : (v1.name > v2.name ? 1 : (v1.location.distance - v2.location.distance))))
 		return (
-			/* because each item on the venuelist may be selected in order to display the venue's detailed information, the construction below is
+			/* because each item on the venuelist may be selected, in order to display the venue's detailed information, the construction below is
 			 * somewhat contorted.  the sorted venues are used to develop each modal and its associated trigger, an <li> tag.  The indices of these are
 			 * used to set the appropriate state variable.  */
 			<ul className="list-columns">

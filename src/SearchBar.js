@@ -69,7 +69,7 @@ class SearchBar extends Component {
 													onClick={ this.useCurrentLocation }
 													onKeyPress={ (e) => handleKeyPress(e, this.useCurrentLocation) }
 													tabIndex="0"
-													aria-label="Current Location Selector"
+													aria-label="Current Location Button"
 													style={ {color: "rgb(95, 124, 162)"} }>
 												</i>
 											</div>
@@ -124,7 +124,7 @@ class SearchBar extends Component {
 															onClick={ this.useCurrentLocation }
 															onKeyPress={ (e) => handleKeyPress(e, this.useCurrentLocation) }
 															tabIndex="0"
-															aria-label="Current Location Selector"
+															aria-label="Current Location Button"
 															style={ {color: "rgb(95, 124, 162)"} }>
 														</i>
 													</div>
@@ -179,7 +179,7 @@ class SearchBar extends Component {
 															onClick={ this.useCurrentLocation }
 															onKeyPress={ (e) => handleKeyPress(e, this.useCurrentLocation) }
 															tabIndex="0"
-															aria-label="Current Location Selector"
+															aria-label="Current Location Button"
 															style={ {color: "rgb(95, 124, 162)"} }>
 														</i>
 													</div>

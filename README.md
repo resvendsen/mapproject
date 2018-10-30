@@ -24,9 +24,9 @@
 The **Venue Finder** app queries the Foursquare database for any businesses, points of interest, etc. near a user entered location.  Venues may be sought by name, keyword, or category.  Locations near which users are seeking the venue, may be entered as a street address, city, or the user's "Current Location".  Additional filtering available is "search radius" and "number of venues desired", the use of which will speed up searches.
 
 
-# Requirements and Limitations
+# Requirements
 
-Devices from smartphones through wide screen desktops are supported.  Some features are limited on mobile devices.
+Devices from smartphones through wide screen desktops are supported.
 
 
 # Installation
@@ -62,11 +62,11 @@ Devices from smartphones through wide screen desktops are supported.  Some featu
 #### Limiting Search Results
     **NOTE**:  These features are not implemented on mobile devices.
 
-    The number of search results can be limited by shrinking the search radius and/or by expressing the maximum number that may be returned.
+    The number of search results can be limited by shrinking the search radius and/or by expressing the maximum number that can be returned.
 
     Search radius defaults to 6.2 miles (10 kilometers).  Enter any value less than 62.0.
 
-    Maximum count defaults to 30.  You may enter from 1 to 50.  Results will be returned quicker for lower numbers.
+    Maximum count defaults to 30 (5 on mobile devices.  You may enter from 1 to 50 (15 on mobile devices).  Results will potentially be returned quicker for lower numbers.
 
 #### Results Modes
     The returned information may either be displayed on a map or as a list.  Click the "Show Map" checkbox to display in map mode.  A check mark indicates that the map will display.  Unclick the "Show Map" check box to display the results in a list.  In this case the checkbox will be blank/unchecked.

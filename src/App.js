@@ -7,6 +7,7 @@ import SettingsMenu from './SettingsMenu'
 /* These are used when nothing is entered in search radius or max return count */
 const DEFAULT_RADIUS = 10000.0     /* meters */  /* 4square Max = 100,000 */
 const DEFAULT_MAX_RETURN_COUNT = 30  /* 4square Max = 50 */
+const DEFAULT_MAX_RETURN_COUNT_NONCOMPUTER = 5
 /* style layout map themes */
 /* fancy is from github.com/tomchentw/react-google-maps/src/components/addons/InfoBox.md dtd 3Nov17 */
 const themes = ['fancy', 'default']
@@ -14,7 +15,7 @@ const themes = ['fancy', 'default']
 class App extends Component {
   state = {
     searchRadius: DEFAULT_RADIUS,
-    maxReturnCount: DEFAULT_MAX_RETURN_COUNT,
+    maxReturnCount: (window.innerWidth > 991 ? DEFAULT_MAX_RETURN_COUNT : DEFAULT_MAX_RETURN_COUNT_NONCOMPUTER),
     theme: 'default',
     accessibility: false,
     showMap: true
@@ -100,7 +101,7 @@ class App extends Component {
             <Grid.Row>
               <Grid.Column float="left" only="mobile" width="4">
               </Grid.Column>
-              <Grid.Column width="16">
+              <Grid.Column width="16" only="tablet computer">
                 <SettingsMenu
                   toggleAccessibility={ toggleAccessibility }
                   accessibility={ accessibility }
@@ -121,7 +122,9 @@ class App extends Component {
           showMap={ showMap }
           toggleShowMap={ toggleShowMap }
           accessibility={ accessibility }
+          toggleAccessibility={ toggleAccessibility }
           theme={ theme }
+          setTheme={ setTheme }
         />
       </div>
     )

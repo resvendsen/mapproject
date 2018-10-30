@@ -6,3 +6,13 @@
 	border: 1px solid #999999;
 	border-radius: 2px;
 }
+
+.point.link.icon {
+	border: 1px solid #ddd;
+}
+
+.point.link.icon:focus {
+	border-style: none;
+	outline: none;
+	box-shadow: 0 0 0 1px cyan;
+}

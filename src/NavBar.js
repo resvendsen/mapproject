@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
-import {Responsive, Input, Grid, Checkbox} from 'semantic-ui-react'
+import {Responsive, Input, Grid, Checkbox, Dropdown, Modal} from 'semantic-ui-react'
 import PropTypes from 'prop-types'
 import './SearchBar.css'
+import './NavBar.css'
 
 // from Stackoverflow 'How to recreate auto-collapsable menu with semantic-ui for react?' Alexander Fedyashov dtd 20 Sep '17
 class NavBar extends Component {
@@ -12,28 +13,43 @@ class NavBar extends Component {
     setSearchRadius: PropTypes.func.isRequired,
     setReturnCount: PropTypes.func.isRequired,
     showMap: PropTypes.bool.isRequired,
-    toggleShowMap: PropTypes.func.isRequired
+    toggleShowMap: PropTypes.func.isRequired,
+    accessibility: PropTypes.bool.isRequired,
+    toggleAccessibility: PropTypes.func.isRequired,
+    theme: PropTypes.string.isRequired,
+    setTheme: PropTypes.func.isRequired
   }
 
   state = {
-    visible: false
+    visible: false,
+    showAbout: false,
+    activeItem: null,
+    // used for both mobile and computer radius settings
+    needNewDefaultValueRadius: true,
+    // used only for mobile settings radius dropdown
+    settingsDropdownOpen: false
   }
 
-  needNewDefaultValueRadius = true
   needNewDefaultValueMaxCount = true
 
   componentDidUpdate = () => {
-    if (this.needNewDefaultValueRadius) {
-      this.needNewDefaultValueRadius = false
-      if (this.refs.radiusInput && this.refs.radiusInput.value) {
-        this.refs.radiusInput.value = (this.props.searchRadius * 0.000621371).toFixed(1)
-      }
-      console.log("Radius on screen updated to ", (this.props.searchRadius * 0.000621371).toFixed(1))
+    if (this.state.needNewDefaultValueRadius) {
+      this.setState((prevstate) => {
+        return {needNewDefaultValueRadius: !prevstate.needNewDefaultValueRadius}
+      },
+        () => {
+          console.log("needNewDefaultValueRadius set to ", this.state.needNewDefaultValueRadius)
+          if (this.refs.radiusInput && this.refs.radiusInput.value) {
+            this.refs.radiusInput.value = (this.props.searchRadius * 0.000621371).toFixed(1)
+          }
+          console.log("Radius on screen updated to ", (this.props.searchRadius * 0.000621371).toFixed(1))
+        }
+      )
     }
     if (this.needNewDefaultValueMaxCount) {
       this.needNewDefaultValueMaxCount = false
       if (this.refs.maxInputCount && this.refs.maxInputCount.value) {
-        this.refs.maxCountInput.value = this.props.maxReturnCount
+        this.refs.maxInputCount.value = this.props.maxReturnCount
         console.log("Max Count on screen updated to ", this.props.maxReturnCount)
       }
     }
@@ -50,9 +66,62 @@ class NavBar extends Component {
     }
   }
 
+  toggleAboutPopup = () => {
+    this.setState(prevstate => {
+      return {showAbout: !prevstate.showAbout}
+    },
+      () => console.log('Show About 2 set to ', this.state.showAbout)
+    )
+  }
+
+  handleItemClick = (item) => {
+    this.toggleAboutPopup()
+    this.setState({ activeItem: item },
+      ()  => console.log("Settings 2 active item changed to ", this.state.activeItem)
+    )
+  }
+
+  toggleSettingsDropdown = (e) => {
+    // only want the Dropdown click event to change state when it was clicked, not when its child was clicked
+    if (e.target.isSameNode(e.currentTarget)) {
+      this.setState((prevstate) => {
+        // needNewDefaultValueRadius set to false since the dropdown is not open yet -- once open it goes to true
+        // this false setting also puts it in sync with componentDidUpdate for mobile
+        return {settingsDropdownOpen: !prevstate.settingsDropdownOpen}
+      },
+//        () => {console.log("needNewDefaultValueRadius set to false")
+          () =>  {console.log("Settings Dropdown toggled ", this.state.settingsDropdownOpen)
+                   if (!this.state.settingsDropdownOpen) {document.getElementById('settingsMenu').focus()}
+                  }
+      )
+    }
+  }
+
+  handleAccessibilityClick = (e) => {
+    if (!this.props.accessibility && this.props.showMap) {
+        this.props.toggleShowMap()
+    }
+    this.props.toggleAccessibility()
+    e.stopPropagation()
+  }
+
+  handleRadiusFocus = (e) => {
+    e.stopPropagation()
+  }
+
+  handleThemeChange = (e) => {
+    this.props.setTheme(e.target.value)
+    e.stopPropagation()
+  }
+
   render() {
-    const {showMap} = this.props
-    const {handleToggleShowMap} = this
+    const {showMap, searchRadius, maxReturnCount, accessibility, theme} = this.props
+    const {showAbout, settingsDropdownOpen} = this.state
+    const {handleToggleShowMap, handleRadiusInput, handleReturnCountInput, handleItemClick, toggleAboutPopup, toggleSettingsDropdown, handleRadiusFocus, handleAccessibilityClick, handleThemeChange} = this
+    const standardstyle = {color: '#222', backgroundColor: '#fff'}
+    const greenstyle = {color: 'lightgreen', backgroundColor: 'white', border: '1px solid #ddd'}
+    const plainstyle = {color: '#222', backgroundColor: 'white', border: '1px solid #ddd'}
+    const searchRadiusCalc = (searchRadius * 0.000621371).toFixed(1)
     return (
       <div>
         <div className="ui two column grid">
@@ -75,39 +144,114 @@ class NavBar extends Component {
           static onlyLargeScreen = { minWidth: 1200, maxWidth: 1919 }
           static onlyWidescreen = { minWidth: 1920 }   */}
           <Responsive minWidth={ 320 } maxWidth={ Responsive.onlyMobile.maxWidth }>  {/* 320 - 767px */}
-            <div className="two column row">
-{/* TODO: want to make this work for mobile */}
-{/*                <div className="ui action input">
-                  <Input type="text"
-                         size="mini"
-                         style={ {marginLeft: "24vw", width: '20vw'} }
-                         ref="radiusInput"
-                         onBlur={ this.handleRadiusInput }
-                         placeholder="Search radius"
-                         className="searchinput"
-                  />
-                </div>
-                <div className="ui action input">
-                  <Input type="text"
-                         size="mini"
-                         style={ {width: '20vw'} }
-                         ref="maxCountInput"
-                         onBlur={ this.handleReturnCountInput }
-                         placeholder=" # Venues"
-                         className="searchinput"
-                  />
-                </div>  */}
-                <div className="ui action checkbox" style={ {width: '85vw'} }>
-                  <Checkbox
-                    checked={ showMap ? true : false }
-                    className="searchinput"
-                    tabIndex="0"
-                    label='Show Map'
-                    onClick={ handleToggleShowMap }
-                    style={ {marginLeft: '1vw'} }
-                  />
-                </div>
-            </div>
+            <Grid>
+                <Grid.Row centered style={ {marginTop: 5} }>
+                  <Dropdown
+                    className='settingsMenu'
+                    id='settingsMenu'
+                    tabIndex='0'
+                    text='  Settings  '
+                    style={ {marginLeft: '25vw', border: '1px solid #ddd', borderRadius: '5px'} }
+                    open={ settingsDropdownOpen }
+                    onClick={ toggleSettingsDropdown }
+                  >
+                    <Dropdown.Menu open={ settingsDropdownOpen }>
+                      {/* Accessibility for mobile */}
+                      <Dropdown.Item
+                        className='accessibility-item'
+                        tabIndex='0'
+                        onClick={ (e) => handleAccessibilityClick(e) }
+                        style={ accessibility ? greenstyle : plainstyle }
+                      >
+                      Accessibility
+                      </Dropdown.Item>
+                      {/* Themes for mobile */}
+                      <Dropdown.Item>
+                        Theme&nbsp;&nbsp;
+                        <select
+                          className='themes-dropdown'
+                          tabIndex='0'
+                          aria-label='Themes'
+                          onChange={ handleThemeChange }
+                          style={ theme === 'default' ? plainstyle : greenstyle }
+                        >
+                          <option className='themes-option' value='default' aria-label='Default'>Default</option>
+                          <option className='themes-option' value='fancy' araia-label='Fancy'>Fancy</option>
+                        </select>
+                      </Dropdown.Item>
+                      {/* Search Radius for mobile */}
+                      <Dropdown.Item>
+                        <span>Radius&nbsp;&nbsp;</span>
+                        <Input
+                          type='text'
+                          defaultValue={ searchRadiusCalc }
+                          style={ {width: "53px", height: "16px", fontSize: "14px", border: '1px solid #ddd', borderRadius: '5px'} }
+                          ref="radiusInput"
+                          onFocus={ handleRadiusFocus }
+                          onClick={ handleRadiusFocus }
+                          onBlur={ handleRadiusInput }
+                          aria-label="Search Radius"
+                          size='mini'
+                          tabIndex='0'
+                          className="searchRadiusInput"
+                        />
+                      </Dropdown.Item>
+                      {/* Return Count for mobile */}
+                      <Dropdown.Item>
+                        <span>Return #&nbsp;&nbsp;</span>
+                        <select
+                          className='count-dropdown'
+                          name='count'
+                          ref='maxInputCount'
+                          tabIndex='0'
+                          onChange={ (e) => handleReturnCountInput(e) }
+                          label=""
+                          aria-label="Return Count"
+                          defaultValue={ maxReturnCount }
+                          style={ maxReturnCount === 5 ? plainstyle : greenstyle }
+                        >
+                          <option className='count-option' value='5' aria-label="5">5</option>
+                          <option className='count-option' value='10' aria-label="10">10</option>
+                          <option className='count-option' value='15' aria-label="15">15</option>
+                        </select>
+                      </Dropdown.Item>
+                      {/* About for mobile */}
+                      <Modal
+                        trigger={
+                          <Dropdown.Item
+                            className='about-button'
+                            tabIndex='0'
+                            onClick={ () => handleItemClick('about') }
+                            style={ standardstyle }
+                            content='About'
+                          />
+                        }
+                        open={ showAbout }
+                        onClose={ toggleAboutPopup }
+                        size='mini'
+                      >
+                        <Modal.Header>About</Modal.Header>
+                        <Modal.Content>
+                          <p>Title: Venue Finder</p>
+                          <p>Author: Roger Svendsen</p>
+                          <p>Version: 0.1.0</p>
+                          <p>Date: 9 Oct 2018</p>
+                        </Modal.Content>
+                      </Modal>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                  <div className="ui action checkbox" style={ {width: '35vw'} }>
+                    <Checkbox
+                      checked={ showMap ? true : false }
+                      className="searchinput"
+                      tabIndex="0"
+                      label='Show Map'
+                      onClick={ handleToggleShowMap }
+                      style={ {marginLeft: '1vw'} }
+                    />
+                  </div>
+                </Grid.Row>
+            </Grid>
           </Responsive>
         </div>
         <div>
@@ -120,7 +264,8 @@ class NavBar extends Component {
                            size="mini"
                            style={ {marginLeft: '24vw', width: '20vw'} }
                            ref="radiusInput"
-                           onBlur={ this.handleRadiusInput }
+                           onBlur={ handleRadiusInput }
+                           aria-label="Search Radius"
                            placeholder="Search radius"
                            className="searchinput"
                     />
@@ -130,7 +275,8 @@ class NavBar extends Component {
                            size="mini"
                            style={ {marginLeft: '1vw', width: '20vw'} }
                            ref="maxCountInput"
-                           onBlur={ this.handleReturnCountInput }
+                           onBlur={ handleReturnCountInput }
+                           aria-label="# Venues to return"
                            placeholder="# Venues to return"
                            className="searchinput"
                     />
@@ -142,7 +288,6 @@ class NavBar extends Component {
                       tabIndex="0"
                       label='Show Map'
                       onClick={ handleToggleShowMap }
-
                       style={ {marginLeft: '1vw'} }
                     />
                   </div>
@@ -162,8 +307,9 @@ class NavBar extends Component {
                            size="small"
                            style={ {marginLeft: '24vw', width: '20vw'} }
                            ref="radiusInput"
-                           onBlur={ this.handleRadiusInput }
+                           onBlur={ handleRadiusInput }
                            placeholder="Search radius"
+                           aria-label="Search Radius"
                            className="searchinput"
                     />
                   </div>
@@ -172,7 +318,8 @@ class NavBar extends Component {
                            size="small"
                            style={ {marginLeft: '1vw', width: '20vw'} }
                            ref="maxCountInput"
-                           onBlur={ this.handleReturnCountInput }
+                           onBlur={ handleReturnCountInput }
+                           aria-label="# Venues to return"
                            placeholder="# Venues to return"
                            className="searchinput"
                     />

@@ -31,11 +31,11 @@
 
 .settings-menu {
   position: relative;
-  bottom: 2vh;
+  bottom: 4vh;
 }
 
-@media only screen and (min-width: 1640px) {
+@media only screen and (min-width: 1530px) {
 	.settings-menu {
-		bottom: 4vh;
+		bottom: 6.2vh;
 	}
 }
