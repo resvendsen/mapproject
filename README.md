@@ -42,12 +42,17 @@ Devices from smartphones through wide screen desktops are supported.
   - `npm install --save react-dom`
   - `npm install --save prop-types`
   - `npm install --save semantic-ui-react`
+  - `npm install --save-dev cross-env`
 
 
 # Use
 
 #### Begin
-    Begin execution by entering localhost:3000 into your browser url field and hitting Enter..
+
+    At the command prompt cd into the directory in which you installed the application and type `npm start` followed by Enter.
+
+    The application should come up in your browser.
+    If not, begin execution by entering `localhost:3000` into your browser url field and hitting Enter.
 
 #### Quick Searching
     In the first entry field, enter one of:
