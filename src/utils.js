@@ -6,9 +6,9 @@ function handleKeyPress(e, f) {
 	}
 }
 
-/* the incr and decr functions use the remaindering operator (%) which returns can return negative
+/* the incr and decr functions use the remaindering operator (%) which can return negative
  * values rather than always returning 0 thru modulus - 1.  Since we always want a non-negative number
- * we wrote the incr and decr functions to behave accordingly.  */
+ * the incr and decr functions behave accordingly.  */
 // val is the value to be incremented, i is the increment, mod is the modulus
 let incr = (val, i, mod) => {
 	return ((((val + i) % mod) + mod) % mod)

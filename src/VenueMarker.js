@@ -3,6 +3,7 @@ import React, {Component} from 'react'
 import {Marker} from 'react-google-maps'
 import InfoBox from 'react-google-maps/lib/components/addons/InfoBox'
 import PropTypes from 'prop-types'
+import './VenueMarker.css'
 
 class VenueMarker extends Component {
 
