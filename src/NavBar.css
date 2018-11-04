@@ -1,0 +1,40 @@
+@media only screen and (max-width: 767px) {
+	.count-dropdown {
+		border: 1px solid #ddd;
+	}
+
+	.count-dropdown:focus:not(:hover) {
+		border-style: none;
+		outline: 1px solid cyan;
+	}
+
+	.count-dropdown:hover {
+		outline: none;
+		border: 1px solid #ddd;
+		border-radius: 5px;
+	}
+
+	.searchRadiusInput {
+		width: 53px;
+		height: 16px;
+		font-size: 14px;
+		border: 1px solid #ddd;
+		border-radius: 5px;
+	}
+
+	.settingsMenu:focus {
+		border-style: none;
+		outline: 1px solid cyan;
+		border-radius: 5px;
+	}
+
+	.settingsMenu {
+		border: 1px solid #ddd;
+		border-radius: 5px;
+	}
+
+	.accessibility-item:focus {
+		border-style: none;
+		outline: 1px solid cyan;
+	}
+}
