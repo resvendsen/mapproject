@@ -145,7 +145,7 @@ class NavBar extends Component {
           static onlyWidescreen = { minWidth: 1920 }   */}
           <Responsive minWidth={ 320 } maxWidth={ Responsive.onlyMobile.maxWidth }>  {/* 320 - 767px */}
             <Grid>
-                <Grid.Row centered style={ {marginTop: 5} }>
+                <Grid.Row centered className="settingsRow">
                   <Dropdown
                     className='settingsMenu'
                     id='settingsMenu'

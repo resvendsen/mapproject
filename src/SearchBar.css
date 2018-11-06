@@ -16,3 +16,15 @@
 	outline: none;
 	box-shadow: 0 0 0 1px cyan;
 }
+
+@media only screen and (max-width: 400px) {
+	.ui.stackable.two.column.grid {
+		padding-top: 15px;
+	}
+}
+
+@media only screen and (min-width: 401px) {
+	.ui.stackable.two.column.grid {
+		padding-top: 24px;
+	}
+}

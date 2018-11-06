@@ -38,7 +38,21 @@
   to { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 400px) {
+  .App-header {
+    height: 6vh;
+    bottom: -1vh;
+  }
+  .App-title {
+    font-size: 1em;
+    bottom: -1vh;
+  }
+  .App-logo {
+    bottom: -0.5vh;
+  }
+}
+
+@media only screen and (min-width: 401px) and (max-width: 767px) {
   .App-header {
     height: 8vh;
     bottom: -1vh;

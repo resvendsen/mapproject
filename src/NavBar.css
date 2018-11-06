@@ -38,3 +38,15 @@
 		outline: 1px solid cyan;
 	}
 }
+
+@media only screen and (max-width: 400px) {
+	.settingsRow {
+		margin-top: 0.5;
+	}
+}
+
+@media only screen and (min-width: 401px) {
+	.settingsRow {
+		margin-top: 2;
+	}
+}

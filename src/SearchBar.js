@@ -33,7 +33,7 @@ class SearchBar extends Component {
 // TODO add a clear button to reset the search fields to blank
  	render() {
 		return (
-			<div className="ui stackable two column grid" style={ {paddingTop: 20} }>
+			<div className="ui stackable two column grid">
 				<Responsive minWidth={ 320 } maxWidth={ Responsive.onlyMobile.maxWidth }>
 					<div className="column">
 							<Form onSubmit={ this.handleSubmit }>
