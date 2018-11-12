@@ -28,10 +28,21 @@ class Home extends Component {
 		searchReq: '',
 		distance: '',
 		showCurMarker: true,
-		venues: []
+		venues: [],
+		venueIdToHilite: 'none',
+		showMap: this.props.showMap,
+		venueIdToFocus: 'none'
 	}
 
 	defaultLocation = {lat: 39.984929, lng: -85.983967}
+
+	static getDerivedStateFromProps = (nextprops, prevstate) => {
+		if (nextprops.showMap !== prevstate.showMap) {
+			return {showMap: nextprops.showMap}
+		} else {
+			return null
+		}
+	}
 
 	/* geocoding is based on gist.github.com/joyrexus/README.md viz. geocoding your location */
 	geocode = (lat, lng) => {
@@ -90,7 +101,7 @@ class Home extends Component {
 						})
 						.catch((e) => {
 								console.log(e)
-								alert('*** Error fetching venues.  Please contact programmer. ***')
+								alert('*** Error fetching venues from Foursquare.  Please contact programmer. ***')
 						})
   			}
   		)
@@ -135,19 +146,51 @@ class Home extends Component {
 		)
 	}
 
+	showMapWithHilitedVenue = (v) => {
+		this.setState({venueIdToHilite: v},  // check - venue to be hilited is stored in state
+			() => {
+				this.props.toggleShowMap()  // check - showMap set to true
+				console.log('venueIdToHilite set to ', this.state.venueIdToHilite)
+			}
+		)
+	}
+
+	flipShowMap = () => {
+		if (this.props.showMap) {
+			if (this.state.venueIdToHilite !== 'none') {
+				this.setState({venueIdToFocus: this.state.venueIdToHilite, venueIdToHilite: 'none'},  // check - map hilite variable none & focus venue id set
+					() => {
+						this.props.toggleShowMap()  // check - showMap set to false
+					}
+				)
+			} else {
+				this.props.toggleShowMap()  // check - sets it to false
+			}
+		} else {
+			this.props.toggleShowMap()  // check - sets to true and has no hiliting to do
+		}
+	}
+
+	resetVenueIdToFocus = () => {
+		this.setState({venueIdToFocus: 'none'},
+			() => {console.log('venueIdToFocus set to', this.state.venueIdToFocus)}
+		)
+	}
+
 	render() {
-		const {curPosition, curAddress, showCurMarker, venues} = this.state
-		const {accessibility, toggleAccessibility, theme, setTheme} = this.props
+		const {showMapWithHilitedVenue, flipShowMap, resetVenueIdToFocus} = this
+		const {curPosition, curAddress, showCurMarker, venues, venueIdToHilite, venueIdToFocus} = this.state
+		const {showMap, accessibility, toggleAccessibility, theme, setTheme} = this.props
 		return(
 			<div>
 				<div style={{height: "17vh"}}>
 					<SearchBar
 						onSearch={ this.handleSearch }
 					/>
-					<NavBar { ...this.props } showMap={ this.props.showMap } toggleShowMap={ this.props.toggleShowMap } accessibility={ accessibility } toggleAccessibility={ toggleAccessibility } theme={ theme } setTheme={ setTheme }>
+					<NavBar { ...this.props } showMap={ showMap } toggleShowMap={ flipShowMap } accessibility={ accessibility } toggleAccessibility={ toggleAccessibility } theme={ theme } setTheme={ setTheme }>
 	        </NavBar>
 	      </div>
-	      { this.props.showMap ?
+	      { showMap ?
 					<MapContainer className="my-map"
 											 curPosition={ curPosition }
 											 curAddress={ curAddress }
@@ -155,9 +198,20 @@ class Home extends Component {
 											 venues={ venues }
 											 accessibility={ accessibility }
 											 theme={ theme }
+											 venueIdToHilite={ venueIdToHilite }
 					/>
-					:
-					<VenueList venues={ this.state.venues } />
+				:
+					<VenueList venues={ venues }
+										curPosition={ curPosition }
+									  curAddress={ curAddress }
+									  showCurMarker={ showCurMarker }
+									  accessibility={ accessibility }
+									  theme={ theme }
+									  showMapWithHilitedVenue={ showMapWithHilitedVenue }
+									  venueIdToHilite={ venueIdToHilite }
+									  venueIdToFocus={ venueIdToFocus }
+									  resetVenueIdToFocus={ resetVenueIdToFocus }
+					/>
 				}
 			</div>
 		)

@@ -1,6 +1,6 @@
 /* e is an event object and f is a function to be executed when a space or CR is pressed */
 function handleKeyPress(e, f) {
-	if (e.which === 13 || e.which === 32) {
+	if (e.which === 13 || e.which === 32) {   /* 13 = CR, 32 = space */
 		e.stopPropagation()
 		return f()
 	}

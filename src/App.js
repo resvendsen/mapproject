@@ -18,7 +18,7 @@ class App extends Component {
     maxReturnCount: (window.innerWidth > 991 ? DEFAULT_MAX_RETURN_COUNT : DEFAULT_MAX_RETURN_COUNT_NONCOMPUTER),
     theme: 'default',
     accessibility: false,
-    showMap: true
+    showMap: true,
   }
 
   setSearchRadius = (radius) => {

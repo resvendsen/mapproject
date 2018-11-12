@@ -11,9 +11,20 @@ import DemoFancyMapStyles from './demoFancyMapStyles.json'
 
 class MapPlusMarker extends Component {
 	static propTypes = {
-		venues: PropTypes.array.isRequired,
+		googleMapURL: PropTypes.string.isRequired,
+  	loadingElement: PropTypes.object.isRequired,
+  	containerElement: PropTypes.object.isRequired,
+  	mapElement: PropTypes.object.isRequired,
+  	curPosition: PropTypes.object.isRequired,
+  	curAddress: PropTypes.string.isRequired,
+  	showCurMarker: PropTypes.bool.isRequired,
+  	venues: PropTypes.array.isRequired,
+  	closestMarker: PropTypes.bool.isRequired,
+  	activeMarkerColor: PropTypes.string.isRequired,
+  	closeOtherMarkers: PropTypes.func.isRequired,
 		accessibility: PropTypes.bool.isRequired,
-		theme: PropTypes.string.isRequired
+		theme: PropTypes.string.isRequired,
+		venueIdToHilite: PropTypes.string.isRequired
 	}
 
 	state = {
@@ -21,13 +32,15 @@ class MapPlusMarker extends Component {
 	}
 
 	closestVenue = () => {
-		let cV = this.props.venues[0]
-	  this.props.venues.forEach(venue => {
-			if (venue.location.distance < cV.location.distance) {
-					cV = venue
-			}
-		})
-		return cV
+		if (this.props.venues && this.props.venues.length > 0) {
+			let cV = this.props.venues[0]
+		  this.props.venues.forEach(venue => {
+				if (venue.location.distance < cV.location.distance) {
+						cV = venue
+				}
+			})
+			return cV
+		}
 	}
 
 	toggleOpen = () => {
@@ -39,7 +52,7 @@ class MapPlusMarker extends Component {
 	}
 
 	render() {
-		const {theme} = this.props
+		const {theme, venueIdToHilite} = this.props
 		const {isOpen} = this.state
 		const infoBoxText = 'Current Location\n' +
 												'lat: ' + this.props.curPosition.lat + ', lng: ' +
@@ -86,6 +99,7 @@ class MapPlusMarker extends Component {
 			  									activeMarker={ venue.id === this.props.activeMarker ? true : false }
 			  									activeMarkerColor={ this.props.activeMarkerColor }
 			  									closeMarkers={ this.props.closeOtherMarkers }
+			  									venueIdToHilite={ venueIdToHilite }
 			                 />
 			    return marker
 				})

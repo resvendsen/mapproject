@@ -14,6 +14,7 @@
   - [Results Modes](#results-modes)
   - [Navigation and Selection Keys](#navigation-and-selection-keys)
 * [Accessibility](#accessibility)
+* [Offline Use](#offline-use)
 * [Resources](#resources)
 * [Contributing](#contributing)
 * [Future](#future)
@@ -44,15 +45,26 @@ Devices from smartphones through wide screen desktops are supported.
   - `npm install --save semantic-ui-react`
   - `npm install --save-dev cross-env`
 
+  for production mode, additionally perform:
+  - `npm install -g serve`
+
 
 # Use
 
 #### Begin
 
+##### *Development mode*
     At the command prompt cd into the directory in which you installed the application and type `npm start` followed by Enter.
 
     The application should come up in your browser.
     If not, begin execution by entering `localhost:3000` into your browser url field and hitting Enter.
+
+##### *Production mode*
+    cd to the directory in which you installed the app
+    -`npm run build`
+    -`serve -s build`
+    Enter `localhost:5000` into your browser url field and hit Enter.
+
 
 #### Quick Searching
     In the first entry field, enter one of:
@@ -83,9 +95,13 @@ Devices from smartphones through wide screen desktops are supported.
 
     The Space Bar may be used to trigger the "current location" point icon as well as to set and unset the "show map" checkbox.
 
-    The Enter key is available for triggering the "current location" point icon, the search button, the detail screen from the venue list and the venue detail screen close button.
+    The Enter key is available for triggering the "current location" point icon, the search button, the map view from with selected venue highlighted from the venue list, and the venue detail screen close button.
+
+    The Esc key can be used on the venue list screen to view venue details for the selected venue item.
 
     Up and Down Arrow keys may be used when navigating through the venue list.  Using the Up Arrow key from the first element wraps to the last element and vice versa with the Down Arrow key.
+
+    When the Venue List is displayed, clicking on one of the venues will cause the application to switch to "Show Map" mode, show the color of the desired marker to green and cause the marker to bounce.  Selecting the "Show Map" checkbox will return the app to the "List" mode with the selected venue highlighted.
 
 
 # Accessibility
@@ -93,6 +109,11 @@ Devices from smartphones through wide screen desktops are supported.
 Google Maps provides no accessibility for map location markers.  As an alternative the Venue Finder Web App provides a listing of venues which are accessible via tab and Up/Down Arrow keys.
 
 Button presses are accessible by using the the space bar or the Enter key (however, the Enter key is not available for the themes button).  The Show Map checkbox can be controlled through the space bar.
+
+
+# Offline Use
+
+The app runs offline when in production mode after sufficient use for caching to build up.
 
 
 # Resources

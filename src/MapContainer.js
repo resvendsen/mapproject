@@ -9,22 +9,24 @@ class MapContainer extends Component {
 		showCurMarker: PropTypes.bool.isRequired,
 		venues: PropTypes.array.isRequired,
 		accessibility: PropTypes.bool.isRequired,
-		theme: PropTypes.string.isRequired
+		theme: PropTypes.string.isRequired,
+		venueIdToHilite: PropTypes.string.isRequired
 	}
 
 	state = {
-		closestMarker: null,
-		activeMarker: null,
+		closestMarker: false,
+		activeMarker: '',
 		activeMarkerColor: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
 	}
 
+	// uid is a string
 	closeOtherMarkers = (uid) => {
 		this.setState({activeMarker: uid,
 									 activeMarkerColor: (uid !== null ? 'http://maps.google.com/mapfiles/ms/icons/green-dot.png' : this.state.activeMarkerColor)})
 	}
 
 	render() {
-		const {curPosition, curAddress, showCurMarker, venues, accessibility, theme} = this.props
+		const {curPosition, curAddress, showCurMarker, venues, accessibility, theme, venueIdToHilite} = this.props
 		const {closestMarker, activeMarker, activeMarkerColor} = this.state
 		const {closeOtherMarkers} = this
 		return (
@@ -42,6 +44,7 @@ class MapContainer extends Component {
   									 closeOtherMarkers={ closeOtherMarkers }
   									 accessibility={ accessibility }
   									 theme={ theme }
+  									 venueIdToHilite={ venueIdToHilite }
   		/>
 		)
 	}

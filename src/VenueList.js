@@ -6,22 +6,49 @@ import {incr, decr} from './utils'
 
 class VenueList extends Component {
 	static propTypes = {
-		venues: PropTypes.array.isRequired
+		venues: PropTypes.array.isRequired,
+		curPosition: PropTypes.object.isRequired,
+		curAddress: PropTypes.string.isRequired,
+		showCurMarker: PropTypes.bool.isRequired,
+		accessibility: PropTypes.bool.isRequired,
+		theme: PropTypes.string.isRequired,
+		showMapWithHilitedVenue: PropTypes.func.isRequired,
+		venueIdToHilite: PropTypes.string.isRequired,
+		venueIdToFocus: PropTypes.string.isRequired,
+		resetVenueIdToFocus: PropTypes.func.isRequired
 	}
 
 	state = {
 		detailOpen: Array(this.props.venues.length).fill(false)
 	}
 
+	componentDidMount = () => {
+		if (this.props.venueIdToFocus) {
+			if (this.props.venueIdToFocus !== 'none') {
+				let i = 0
+				while (this.props.venues[i].id !== this.props.venueIdToFocus) {i=i+1}
+				document.getElementById(i.toString(10)).focus()  // check - venue to focus on is set and focused
+				this.props.resetVenueIdToFocus()  // check - focus occurred now reset the variable to 'none'
+			} else {
+				// does nothing when venuIdToFocus = 'none'
+			}
+		}
+	}
+
 	// open modal
-	handleOpen = (index) => {
-		this.setState((prevstate) => {
-			const tmpDetailOpen = prevstate['detailOpen']
-			tmpDetailOpen[index] = !tmpDetailOpen[index]
-			return { tmpDetailOpen }
-		},
-			() => console.log("State variable detailOpen set to 'Open', value: ", this.state.detailOpen[index])
-		)
+	handleOpen = (e, index) => {
+		if (e.key === 'Escape' || e.key === 'Esc') {
+			e.persist()
+			this.setState((prevstate) => {
+				const tmpDetailOpen = prevstate['detailOpen']
+				tmpDetailOpen[index] = !tmpDetailOpen[index]
+				return { tmpDetailOpen }
+			},
+				() => console.log("State variable detailOpen set to 'Open', value: ", this.state.detailOpen[index])
+			)
+		} else {
+			this.props.showMapWithHilitedVenue(this.props.venues[index].id)
+		}
 	}
 
 	// close modal
@@ -50,8 +77,8 @@ class VenueList extends Component {
 	// UP/DOWN ARROWs only apply to navigating the venuelist
 	// Enter may be used to trigger a detailed information modal based on the selected venuelist item
 	// this function serves to limit the arrow keys to the underlying venuelist only
-	navigateList = (key, i) => {
-		switch (key) {
+	navigateList = (e, i) => {
+		switch (e.key) {
 			case 'ArrowUp':
 				// prevent arrow keys from being available when modal is open
 				if (this.state.detailOpen[i]) {return}
@@ -65,8 +92,11 @@ class VenueList extends Component {
 				console.log('NavigateList DOWN ARROW pressed')
 				break
 			case 'Enter':
+			case 'Escape':
+			case 'Esc':
+				// escape will be the new entrance to the detail screen
 				// allow Enter inside the modal for triggering the close button
-				this.handleOpen(i)
+				this.handleOpen(e, i)
 				break
 			default:
 				break
@@ -90,7 +120,7 @@ class VenueList extends Component {
 				return (
 					<Modal key={ i }
 		        trigger={
-							<li id={ i } className='container' onClick={ () => handleOpen(i) } onKeyDown={ (e) => navigateList(e.key, i) } tabIndex="0" style={ {whiteSpace: 'nowrap'} }>
+							<li id={ i } className='container' onClick={ (e) => handleOpen(e, i) } onKeyDown={ (e) => navigateList(e, i) } tabIndex="0" style={ {whiteSpace: 'nowrap'} }>
 								{ venue.id === closestVenue.id ?
 									<Image src='http://maps.google.com/mapfiles/ms/icons/yellow-dot.png' alt='yellow marker' verticalAlign='middle' size='mini' />
 								:
@@ -104,28 +134,29 @@ class VenueList extends Component {
 		        basic
 		        size='small'
 		      >
-		    		{ venue.id === closestVenue.id ?
-							<Image src='http://maps.google.com/mapfiles/ms/icons/yellow-dot.png' alt='yellow marker' verticalAlign='middle' size='mini' />
-						:
-							<Image src='http://maps.google.com/mapfiles/ms/icons/blue-dot.png' alt='blue marker' verticalAlign='middle' size='mini' />
-						}
-			      <Header content={ venue.name } />
-			        <Modal.Content>
-			          { venue.name }<br/>
-								{ venue.location.formattedAddress.length === 1 ? venue.location.formattedAddress[0] :
-																	(venue.location.formattedAddress.length === 2 ? venue.location.formattedAddress[0] + ', ' + venue.location.formattedAddress[1] :
-																	venue.location.formattedAddress[0] + ', ' + venue.location.formattedAddress[1] + ', ' + venue.location.formattedAddress[2])
 
-								 }<br/>
-								{	( venue.categories[0] ? venue.categories[0].name : '        ' ) }<br/>
-								{ (venue.location.distance * 0.000621371).toFixed(1) }mi  { (venue.location.distance / 1000).toFixed(2) }km<br/>
-								{ 'lat: ' + venue.location.labeledLatLngs[0].lat + ', lng: ' + venue.location.labeledLatLngs[0].lng }
-			        </Modal.Content>
-			        <Modal.Actions>
-			          <Button color='red' onClick={ () => handleClose(i) } inverted>
-			            <Icon name='checkmark' /> Close
-			          </Button>
-			        </Modal.Actions>
+							{ venue.id === closestVenue.id ?
+								<Image src='http://maps.google.com/mapfiles/ms/icons/yellow-dot.png' alt='yellow marker' verticalAlign='middle' size='mini' />
+							:
+								<Image src='http://maps.google.com/mapfiles/ms/icons/blue-dot.png' alt='blue marker' verticalAlign='middle' size='mini' />
+							}
+				      <Header content={ venue.name } inverted/>
+				        <Modal.Content>
+				          { venue.name }<br/>
+									{ venue.location.formattedAddress.length === 1 ? venue.location.formattedAddress[0] :
+																		(venue.location.formattedAddress.length === 2 ? venue.location.formattedAddress[0] + ', ' + venue.location.formattedAddress[1] :
+																		venue.location.formattedAddress[0] + ', ' + venue.location.formattedAddress[1] + ', ' + venue.location.formattedAddress[2])
+
+									 }<br/>
+									{	( venue.categories[0] ? venue.categories[0].name : '        ' ) }<br/>
+									{ (venue.location.distance * 0.000621371).toFixed(1) }mi  { (venue.location.distance / 1000).toFixed(2) }km<br/>
+									{ 'lat: ' + venue.location.labeledLatLngs[0].lat + ', lng: ' + venue.location.labeledLatLngs[0].lng }
+				        </Modal.Content>
+				        <Modal.Actions>
+				          <Button color='red' onClick={ () => handleClose(i) } inverted style={ {float: 'right'} }>
+				            <Icon name='checkmark' /> Close
+				          </Button>
+				        </Modal.Actions>
 	      	</Modal>
 				)
 			})}

@@ -9,7 +9,8 @@ class VenueMarker extends Component {
 
 	static propTypes = {
 		venue: PropTypes.object.isRequired,
-		closestVenue: PropTypes.object.isRequired
+		closestVenue: PropTypes.object.isRequired,
+		venueIdToHilite: PropTypes.string.isRequired
 	}
 
 	state = {
@@ -43,8 +44,9 @@ class VenueMarker extends Component {
 	}
 
 	render() {
-		const {isOpen} = this.state
-		const {venue, className} = this.props
+		const {toggleOpen} = this
+		const {isOpen, activeMarker, activeMarkerColor} = this.state
+		const {venue, className, closestVenue, venueIdToHilite} = this.props
 		const formattedAddress = (venue.location.formattedAddress.length === 1 ? venue.location.formattedAddress[0] :
 															(venue.location.formattedAddress.length === 2 ? venue.location.formattedAddress[0] + ', ' + venue.location.formattedAddress[1] :
 															venue.location.formattedAddress[0] + ', ' + venue.location.formattedAddress[1] + ', ' + venue.location.formattedAddress[2]))
@@ -57,19 +59,21 @@ class VenueMarker extends Component {
 			<div>
 				<Marker className={ className }
 								position={ venue.location }
-								onClick={ this.toggleOpen }
-								animation={ isOpen && google.maps.Animation.BOUNCE }
-								icon={ this.state.activeMarker ?
-											{url: this.state.activeMarkerColor} :
-											(this.props.closestVenue.id === venue.id ?
+								onClick={ toggleOpen }
+								animation={ (isOpen || venueIdToHilite === venue.id) && google.maps.Animation.BOUNCE }
+								icon={ venueIdToHilite === venue.id ?
+											 	{url: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'} :
+											 (activeMarker ?
+												{url: activeMarkerColor} :
+											 (closestVenue.id === venue.id ?
 												{url: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'} :
 												{url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'}
-											)
+											 ))
 										 }
 				>
-				{ this.state.isOpen && this.state.activeMarker ?
+				{ isOpen && activeMarker ?
 						<InfoBox
-		 					onCloseClick={ this.toggleOpen }
+		 					onCloseClick={ toggleOpen }
 		 					options={ {closeBoxURL: '', enableEventPropagation: true} }
 	 					>
 			 				<div style={ {backgroundColor: 'yellow', opacity: 0.75, padding: '12px'} }>
